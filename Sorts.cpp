@@ -16,24 +16,6 @@ Sorts::~Sorts(){
 
 }
 
-/*
-TikTokData Sorts::heapSortGetRoot() {
-
-    if (this->heapSortNReviews > 0) {
-
-        return this->heapSortArray[0];
-
-    }
-    else {
-
-        cout << "no momento a Heap se encontra vazia" << endl;
-
-        exit(1);
-
-    }
-}
-*/
-
 void Sorts::heapSortInsert(TikTokData d, SortData *info) {
 
     if(this->heapSortNReviews < this->heapSortMaxReviews) {

@@ -31,6 +31,8 @@ void callHeapSort(int n) {
 
     vector<TikTokData> cringeData;
 
+    SortData sortsInfo(n, n);
+
     ofstream input("saídas.txt", ios::app);
 
     input << "Heap Sort p/ N = " << n << endl;
@@ -40,7 +42,7 @@ void callHeapSort(int n) {
 
     for(int i = 0; i < n; i++) {
 
-        HeapSort.heapSortInsert(part2[i], &cringeData);
+        HeapSort.heapSortInsert(cringeData[i], &sortsInfo);
 
     }
 

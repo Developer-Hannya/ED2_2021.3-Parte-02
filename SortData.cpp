@@ -4,7 +4,7 @@
 #include <vector>
 #include <chrono>
 
-SortData::SortData(int x, int sizeData) {
+SortData::SortData(int n, int sizeData) {
 
     this->moveCount = 0;
 
@@ -14,7 +14,7 @@ SortData::SortData(int x, int sizeData) {
 
     this->sortName = " ";
 
-    for(int i = 0; i < x ;i++) {
+    for(int i = 0; i < n ;i++) {
 
         this->keyVector.push_back(rand() % sizeData);
 
