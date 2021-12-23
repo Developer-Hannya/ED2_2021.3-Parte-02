@@ -1,9 +1,13 @@
 #include "Sorts.h"
 
 Sorts::Sorts(int maxReviews){
+
     this->heapSortMaxReviews = maxReviews;
+
     this->heapSortNReviews = 0;
+
     this->heapSortArray = new TikTokData[this->heapSortMaxReviews];
+
 }
 
 Sorts::~Sorts(){
@@ -12,6 +16,7 @@ Sorts::~Sorts(){
 
 }
 
+/*
 TikTokData Sorts::heapSortGetRoot() {
 
     if (this->heapSortNReviews > 0) {
@@ -27,6 +32,7 @@ TikTokData Sorts::heapSortGetRoot() {
 
     }
 }
+*/
 
 void Sorts::heapSortInsert(TikTokData d, SortData *info) {
 
@@ -74,6 +80,7 @@ void Sorts::heapSortRise(TikTokData d, SortData *info) {
     }
 }
 
+/*
 void Sorts::heapSortDrop(TikTokData father, SortData *info) {
 
     int maxChildIndex = 2 * heapSortGetPositionFromElement(father) + 1;
@@ -135,6 +142,7 @@ void Sorts::heapSortDrop(TikTokData father, SortData *info) {
     }
 
 }
+*/
 
 
 int Sorts::partitionQuickSort(vector<TikTokData> &data, int lowIndex, int highIndex, SortData *info) {

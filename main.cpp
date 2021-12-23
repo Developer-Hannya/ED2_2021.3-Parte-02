@@ -17,36 +17,30 @@
 
 using namespace std;
 
+void callHeapSort(int n) {
 
-void setSortName(std::vector<SortData> sd) {
+    FileReader fr;
 
-    for (int i = 0; i < 3; i++) {
+    int comps[5];
 
-        switch(i) {
+    int moves[5];
 
-            case 0:
+    float TotalTime[5];
 
-                sd[0].setSortName("Heap Sort");
+    Sorts HeapSort(n);
 
-                break;
+    vector<TikTokData> cringeData;
 
-            case 1:
+    ofstream input("saídas.txt", ios::app);
 
-                sd[1].setSortName("Quick Sort");
+    input << "Heap Sort p/ N = " << n << endl;
+    input << "Comparações, Movimentos, Tempo de execução" << endl;
+    cringeData = fr.readTikTok("tiktok_app_reviews.csv");
+    input.close();
 
-                break;
+    for(int i = 0; i < n; i++) {
 
-            case 2:
-
-                sd[0].setSortName("Counting Sort");
-
-                break;
-
-            default:
-
-                break;
-
-        }
+        HeapSort.heapSortInsert(part2[i], &cringeData);
 
     }
 
@@ -55,31 +49,10 @@ void setSortName(std::vector<SortData> sd) {
 
 int main()
 {
-    int n;
 
-    FileReader f;
+    callHeapSort(10000);
 
-    moduloteste mt;
-
-    std::string file = "tiktok_app_reviews.csv";
-
-    vector<TikTokData> ttd;
-
-    ttd = f.readTikTok(file);
-
-    vector<SortData> sd();
-
-    n = 10000;
-
-    Sorts s(n);
-
-    vector<TikTokData> part2;
-
-    mt.randomImport(ttd, part2, n);
-
-    setSortName(sd);
-
-    n = 50000;
+    int n = 50000;
 
     n = 100000;
 

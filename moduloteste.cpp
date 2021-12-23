@@ -96,6 +96,7 @@ void moduloteste::testeImportacao(vector<TikTokData> dados) {
 
 
             wr.write((char *) &text.at(couti), sizeof(text.at(couti)));
+
         }
 
         wr.close();
