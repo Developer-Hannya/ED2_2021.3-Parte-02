@@ -4,7 +4,7 @@
 #include <vector>
 #include <chrono>
 
-SortData::SortData(int x, int sizeData) {
+SortData::SortData(int n, int sizeData) {
 
     this->moveCount = 0;
 
@@ -14,7 +14,7 @@ SortData::SortData(int x, int sizeData) {
 
     this->sortName = " ";
 
-    for(int i = 0; i < x ;i++) {
+    for(int i = 0; i < n ;i++) {
 
         this->keyVector.push_back(rand() % sizeData);
 
@@ -90,7 +90,7 @@ void SortData::setEndTime(chrono::time_point<chrono::high_resolution_clock> endd
 
 }
 
-void SortData::setTotalime(double total) {
+void SortData::setTotalTime(double total) {
 
     this->totalTime = total;
 
@@ -111,7 +111,7 @@ void SortData::setEndTimeCut() {
     this->endTime = chrono::high_resolution_clock::now();
 }
 
-void SortData::setTotalTime() {
+void SortData::defineTotalTime() {
     this->totalTime = chrono::duration_cast<chrono::milliseconds>(this->endTime - this->beginTime).count();
 }
 

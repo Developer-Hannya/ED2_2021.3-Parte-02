@@ -18,40 +18,263 @@
 
 using namespace std;
 
-void setSortName(std::vector<SortData> sd) {
+void callHeapSort(int n) {
 
-    for (int i = 0; i < 3; i++) {
+    FileReader fr;
 
-        switch(i) {
+    int comps[5];
 
-            case 0:
+    int moves[5];
 
-                sd[0].setSortName("Heap Sort");
+    float TotalTimes[5];
 
-                break;
+    Sorts HeapSort(n);
 
-            case 1:
+    vector<TikTokData> cringeData;
 
-                sd[1].setSortName("Quick Sort");
+    ofstream input("sa�da.txt", ios::app);
 
-                break;
+    input << "Heap Sort p/ N = " << n << endl;
 
-            case 2:
+    input << "Compara��es, Movimentos, Tempo de execu��o" << endl;
 
-                sd[0].setSortName("Counting Sort");
+    cringeData = fr.readTikTok("tiktok_app_reviews.csv");
 
-                break;
+    input.close();
 
-            default:
+    for(int i = 0; i < 5; i++) {
 
-                break;
+        srand(i);
+
+        SortData *sortsInfo = new SortData(n, n);
+
+        vector<TikTokData> ol(n);
+
+        for (int j = 0; j < sortsInfo->getKeyVectorSize(); j++) {
+
+            ol[j] = cringeData[sortsInfo->getIndexFromKeyVector(j)];
 
         }
 
+        sortsInfo->setBeginTimeAction();
+
+        for (int k = 0; k < n; k++) {
+
+         HeapSort.heapSortInsert(ol[k], sortsInfo);
+
+        }
+
+        sortsInfo->setEndTimeCut();
+
+        sortsInfo->defineTotalTime();
+
+        fr.writeInFile(ol);
+
+        moves[i] = sortsInfo->getMoveCount();
+
+        comps[i] = sortsInfo->getCompCount();
+
+        TotalTimes[i] = sortsInfo->getTotalTime();
+
+        delete sortsInfo;
+
     }
+
+    float moveMedia = (moves[0] + moves[1] + moves[2] + moves[3] + moves[4])/ 5;
+
+    float compsMedia = (comps[0] + comps[1] + comps[2] + comps[3] + comps[4])/ 5;
+
+    float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
+
+    ofstream results("sa�da.txt",ios::app);
+
+    results << "M�dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+
+    results.close();
 
 }
 
+void callQuickSort(int n) {
+
+    FileReader fr;
+
+    int comps[5];
+
+    int moves[5];
+
+    float TotalTimes[5];
+
+    Sorts QuickSort(0);
+
+    vector<TikTokData> cringeData;
+
+    ofstream input("sa�da.txt", ios::app);
+
+    input << "Quick Sort p/ N = " << n << endl;
+
+    input << "Compara��es, Movimentos, Tempo de execu��o" << endl;
+
+    cringeData = fr.readTikTok("tiktok_app_reviews.csv");
+
+    input.close();
+
+    for(int i = 0; i < 5; i++) {
+
+        srand(i);
+
+        SortData *sortsInfo = new SortData(n, n);
+
+        vector<TikTokData> ol(n);
+
+        for (int j = 0; j < sortsInfo->getKeyVectorSize(); j++) {
+
+            ol[j] = cringeData[sortsInfo->getIndexFromKeyVector(j)];
+
+        }
+
+        sortsInfo->setBeginTimeAction();
+
+        QuickSort.quickSort(ol, 0, ol.size(), sortsInfo);
+
+        sortsInfo->setEndTimeCut();
+
+        sortsInfo->defineTotalTime();
+
+        fr.writeInFile(ol);
+
+        moves[i] = sortsInfo->getMoveCount();
+
+        comps[i] = sortsInfo->getCompCount();
+
+        TotalTimes[i] = sortsInfo->getTotalTime();
+
+        delete sortsInfo;
+
+    }
+
+    float moveMedia = (moves[0] + moves[1] + moves[2] + moves[3] + moves[4])/ 5;
+
+    float compsMedia = (comps[0] + comps[1] + comps[2] + comps[3] + comps[4])/ 5;
+
+    float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
+
+    ofstream results("sa�da.txt",ios::app);
+
+    results << "M�dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+
+    results.close();
+
+}
+
+void callCountingSort(int n) {
+
+    FileReader fr;
+
+    int comps[5];
+
+    int moves[5];
+
+    float TotalTimes[5];
+
+    Sorts CountingSort(0);
+
+    vector<TikTokData> cringeData;
+
+    ofstream input("sa�da.txt", ios::app);
+
+    input << "Counting Sort p/ N = " << n << endl;
+
+    input << "Compara��es, Movimentos, Tempo de execu��o" << endl;
+
+    cringeData = fr.readTikTok("tiktok_app_reviews.csv");
+
+    input.close();
+
+    for(int i = 0; i < 5; i++) {
+
+        srand(i);
+
+        SortData *sortsInfo = new SortData(n, n);
+
+        vector<TikTokData> ol(n);
+
+        for (int j = 0; j < sortsInfo->getKeyVectorSize(); j++) {
+
+            ol[j] = cringeData[sortsInfo->getIndexFromKeyVector(j)];
+
+        }
+
+        sortsInfo->setBeginTimeAction();
+
+        CountingSort.countingSort(ol, sortsInfo);
+        //vector<TikTokData> &data, SortData *info
+
+        sortsInfo->setEndTimeCut();
+
+        sortsInfo->defineTotalTime();
+
+        fr.writeInFile(ol);
+
+        moves[i] = sortsInfo->getMoveCount();
+
+        comps[i] = sortsInfo->getCompCount();
+
+        TotalTimes[i] = sortsInfo->getTotalTime();
+
+        delete sortsInfo;
+
+    }
+
+    float moveMedia = (moves[0] + moves[1] + moves[2] + moves[3] + moves[4])/ 5;
+
+    float compsMedia = (comps[0] + comps[1] + comps[2] + comps[3] + comps[4])/ 5;
+
+    float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
+
+    ofstream results("sa�da.txt",ios::app);
+
+    results << "M�dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+
+    results.close();
+
+}
+
+void callSorts() {
+
+    callHeapSort(10000);
+
+    callHeapSort(50000);
+
+    callHeapSort(100000);
+
+    callHeapSort(500000);
+
+    callHeapSort(1000000);
+
+
+    callQuickSort(10000);
+
+    callQuickSort(50000);
+
+    callQuickSort(100000);
+
+    callQuickSort(500000);
+
+    callQuickSort(1000000);
+
+
+    callCountingSort(10000);
+
+    callCountingSort(50000);
+
+    callCountingSort(100000);
+
+    callCountingSort(500000);
+
+    callCountingSort(1000000);
+
+}
+    
 int main()
 {
     std::vector<TikTokData> dados;
@@ -72,10 +295,7 @@ int main()
     }
     if(i==1)
     {
-        Sorts *ord= new Sorts();
-        ord->quickSort(dados,dados.begin(),dados.end(),SortData * info);
-        ord->heapSort();
-        ord->countingSort(dados,dados.size());
+        callSorts();
         delete[] ord;
     }
     else if(i==2)
