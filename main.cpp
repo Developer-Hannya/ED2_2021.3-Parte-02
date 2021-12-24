@@ -3,17 +3,18 @@
 #include <stdio.h>
 #include <windows.h>
 #include <process.h>
-#include <iostream>
 #include <fstream>
-#include <iomanip>
-#include <string>
+#include <time.h>
 #include <vector>
+#include <string>
+#include <iomanip>
 
+#include "SortData.h"
+#include "moduloteste.h"
+#include "TikTokData.h"
+#include "Sorts.h"
 #include "FileReader.h"
 #include "moduloteste.h"
-#include "Sorts.h"
-#include "SortData.h"
-#include "TikTokData.h"
 
 using namespace std;
 
@@ -31,11 +32,11 @@ void callHeapSort(int n) {
 
     vector<TikTokData> cringeData;
 
-    ofstream input("saída.txt", ios::app);
+    ofstream input("saï¿½da.txt", ios::app);
 
     input << "Heap Sort p/ N = " << n << endl;
 
-    input << "Comparações, Movimentos, Tempo de execução" << endl;
+    input << "Comparaï¿½ï¿½es, Movimentos, Tempo de execuï¿½ï¿½o" << endl;
 
     cringeData = fr.readTikTok("tiktok_app_reviews.csv");
 
@@ -85,9 +86,9 @@ void callHeapSort(int n) {
 
     float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
 
-    ofstream results("saída.txt",ios::app);
+    ofstream results("saï¿½da.txt",ios::app);
 
-    results << "Médias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+    results << "Mï¿½dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
 
     results.close();
 
@@ -107,11 +108,11 @@ void callQuickSort(int n) {
 
     vector<TikTokData> cringeData;
 
-    ofstream input("saída.txt", ios::app);
+    ofstream input("saï¿½da.txt", ios::app);
 
     input << "Quick Sort p/ N = " << n << endl;
 
-    input << "Comparações, Movimentos, Tempo de execução" << endl;
+    input << "Comparaï¿½ï¿½es, Movimentos, Tempo de execuï¿½ï¿½o" << endl;
 
     cringeData = fr.readTikTok("tiktok_app_reviews.csv");
 
@@ -157,9 +158,9 @@ void callQuickSort(int n) {
 
     float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
 
-    ofstream results("saída.txt",ios::app);
+    ofstream results("saï¿½da.txt",ios::app);
 
-    results << "Médias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+    results << "Mï¿½dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
 
     results.close();
 
@@ -179,11 +180,11 @@ void callCountingSort(int n) {
 
     vector<TikTokData> cringeData;
 
-    ofstream input("saída.txt", ios::app);
+    ofstream input("saï¿½da.txt", ios::app);
 
     input << "Counting Sort p/ N = " << n << endl;
 
-    input << "Comparações, Movimentos, Tempo de execução" << endl;
+    input << "Comparaï¿½ï¿½es, Movimentos, Tempo de execuï¿½ï¿½o" << endl;
 
     cringeData = fr.readTikTok("tiktok_app_reviews.csv");
 
@@ -230,9 +231,9 @@ void callCountingSort(int n) {
 
     float totalMedia = (TotalTimes[0] + TotalTimes[1] + TotalTimes[2] + TotalTimes[3] + TotalTimes[4])/ 5;
 
-    ofstream results("saída.txt",ios::app);
+    ofstream results("saï¿½da.txt",ios::app);
 
-    results << "Médias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
+    results << "Mï¿½dias: " << fixed << setprecision(3) << moveMedia << ", " << compsMedia << ", " << totalMedia << endl << endl;
 
     results.close();
 
@@ -273,11 +274,63 @@ void callSorts() {
     callCountingSort(1000000);
 
 }
-
+    
 int main()
 {
+    std::vector<TikTokData> dados;
+    vector<TikTokData> t;
+    int i;
+    cout << "[1] ordenacao" << endl << "[2] Hash" << endl << "[3] Modulo de teste"<< endl ;
+    cin >> i;
+    for(int j=0; j<100 ; j++)
+    {
+        srand(time(NULL));
+        int a = rand()%3500000;
+        t.at(j).setId(dados.at(a).getId());
+        t.at(j).setReview(dados.at(a).getReview());
+        t.at(j).setUpVotes(dados.at(a).getUpVotes());
+        t.at(j).setAppVersion(dados.at(a).getAppVersion());
+        t.at(j).setPostDate(dados.at(a).getPostDate());
 
-    callSorts();
+    }
+    if(i==1)
+    {
+        callSorts();
+        delete[] ord;
+    }
+    else if(i==2)
+    {
+        int m;
+        cout<< "Digite a quantidade das versoes mais frequentes:" << endl;
+        cin>>m;
+        hash *version = new Hash;
+        version->versions(dados,dados.size(),m);
+        delete[] version;
+
+    }
+    else if(i==3)
+    {
+        Sorts *ordTeste= new Sorts();
+        hash *version1 = new Hash;
+        ofstream arquivotxt;
+        arquivotxt.open("teste.txt",ios::binary);
+        if (!arquivotxt.is_open())
+        {
+            cout << " ERRO: Arquivo nao aberto. " << endl;
+            return  1 ;
+        }
+        arquivotxt<<ordTeste->quickSort(t,t.begin(),t.end(),SortData * info)<< endl;
+        arquivotxt<<ordTeste->heapSort()<< endl;
+        arquivotxt<<ordTeste->countingSort(dados,dados.size());
+                << endl;
+        arquivotxt<<version1->versions(dados,dados.size(),m);
+
+        arquivotxt.close();
+        delete[] ordTeste;
+        delete[] version1;
+    }
+    else
+        cout<<"operacao invalida"<<endl;
 
     return 0;
 }
