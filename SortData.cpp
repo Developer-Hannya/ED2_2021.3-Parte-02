@@ -90,7 +90,7 @@ void SortData::setEndTime(chrono::time_point<chrono::high_resolution_clock> endd
 
 }
 
-void SortData::setTotalime(double total) {
+void SortData::setTotalTime(double total) {
 
     this->totalTime = total;
 
@@ -111,7 +111,7 @@ void SortData::setEndTimeCut() {
     this->endTime = chrono::high_resolution_clock::now();
 }
 
-void SortData::setTotalTime() {
+void SortData::defineTotalTime() {
     this->totalTime = chrono::duration_cast<chrono::milliseconds>(this->endTime - this->beginTime).count();
 }
 

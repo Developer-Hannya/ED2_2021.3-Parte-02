@@ -52,14 +52,14 @@ class SortData
 
         void setBeginTime(chrono::time_point<chrono::high_resolution_clock> startTime);
         void setEndTime(chrono::time_point<chrono::high_resolution_clock> endTime);
-        void setTotalime(double TotalTime);
+        void setTotalTime(double TotalTime);
 
         void addMoveCount();
         void addCompCount();
 
         void setBeginTimeAction();
         void setEndTimeCut();
-        void setTotalTime();
+        void defineTotalTime();
 
         int getKeyVectorSize();
         int getIndexFromKeyVector(int index);
