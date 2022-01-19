@@ -4,8 +4,10 @@
 #include <math.h>
 #include <bits/stdc++.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "hash.h"
+#include "TikTokData.h"
 
 
 using namespace std;
@@ -13,27 +15,37 @@ using namespace std;
 Hash::Hash(int N)
 {
     this->bucket = N;
-    tabela = new list<string>[bucket];
+    tabela = new list<char>[bucket];
 }
 
-void Hash::versions(vector <tiktokdata>,int n,int m)
+void Hash::versions(int n,int m)
 {
     int random,maior=0;
     ifstream rd;
-    rd.open("tiktokdata.bin",ios::binary);
+    rd.open("TikTokData.bin",ios::binary);
+
     if(!rd.is_open())
     {
         cout<< "ERRO:Arquivo nao aberto."<< endl;
-        return;
+        return exit(EXIT_FAILURE);
     }
 
     for(int count = 0;count < n;count++)
     {
         bool armazenado = false;
+        TikTokData elemento;
+        random = rand() % 3500000
+
+        srand(time(NULL));
+
+        rd.read((char*) &elemento,random*sizeof(TikTokData));
+        
+        string ele = elemento.getAppVersion();
+        
         //verifica se a hash ja esta armazenando a versao.
         for(vector<int> iterator i = serial.begin();i != serial.end();i++)
         {
-            if(chave(tiktokdata.at(random).getAppVersion) == serial.at(i))
+            if(chave(ele) == serial.at(i))
             {
                 armazenado = true;
                 frequencia.at(i) = frequencia.at(i) + 1;
@@ -42,14 +54,12 @@ void Hash::versions(vector <tiktokdata>,int n,int m)
         //insere a versao na hash e armazena nos vectors serial e frequencia.
         if(armazenado == false)
         {
-            srand(time(NULL));
-            random = rand() % 3500000;
-            insereItem(tiktokdata.at(random).getAppVersion);
-            serial.push_back(chave(tiktokdata.at(random).getAppVersion));
+            insereItem(ele);
+            serial.push_back(chave((ele));
             frequencia.push_back(1);
         }
     }
-    //determina o maior elemento.
+    //determina o maior elemento mais frequentes.
     for(int i = 0;i != frequencia.end();i++)
     {
         if(frequencia.at(i) > maior)
