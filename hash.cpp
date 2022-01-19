@@ -15,7 +15,7 @@ using namespace std;
 Hash::Hash(int N)
 {
     this->bucket = N;
-    tabela = new list<string>[bucket];
+    tabela = new list<char>[bucket];
 }
 
 void Hash::versions(int n,int m)
@@ -34,6 +34,7 @@ void Hash::versions(int n,int m)
     {
         bool armazenado = false;
         TikTokData elemento;
+
         random = rand() % 3500000;
 
         srand(time(NULL));
@@ -44,7 +45,11 @@ void Hash::versions(int n,int m)
         for(vector<int> iterator i = serial.begin();i != serial.end();i++)
         {
             string ele = elemento.getAppVersion();
-
+        }
+        
+        //verifica se a hash ja esta armazenando a versao.
+        for(vector<int> iterator i = serial.begin();i != serial.end();i++)
+        {
             if(chave(ele) == serial.at(i))
             {
                 armazenado = true;
