@@ -18,7 +18,7 @@ class Hash
     public:
         Hash(int N);
 
-        void versions(vector <tiktokdata>,int N,int M);
+        void versions(int n,int m);
         void insereItem(string chave);
         void deletaItem(string chave);
         int funcaohash(string x);
