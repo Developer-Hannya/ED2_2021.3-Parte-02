@@ -34,13 +34,18 @@ void Hash::versions(int n,int m)
     {
         bool armazenado = false;
         TikTokData elemento;
-        random = rand() % 3500000
+
+        random = rand() % 3500000;
 
         srand(time(NULL));
 
         rd.read((char*) &elemento,random*sizeof(TikTokData));
         
-        string ele = elemento.getAppVersion();
+        //verifica se a hash ja esta armazenando a versao.
+        for(vector<int> iterator i = serial.begin();i != serial.end();i++)
+        {
+            string ele = elemento.getAppVersion();
+        }
         
         //verifica se a hash ja esta armazenando a versao.
         for(vector<int> iterator i = serial.begin();i != serial.end();i++)
